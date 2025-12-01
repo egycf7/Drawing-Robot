@@ -6,6 +6,7 @@
 #include "serial.h"
 #include "CheckingWordAndGCodeCommands.h"
 #include "LoadingDataStructs.h"
+#include "main.h"
 
 #define bdrate 115200               /* 115200 baud */
 
@@ -48,5 +49,15 @@ int main()
     return (0);
 }
 
+// Send the data to the robot - note in 'PC' mode you need to hit space twice
+// as the dummy 'WaitForReply' has a getch() within the function.
+void SendCommands (char *buffer )
+{
+    // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
+    PrintBuffer (&buffer[0]);
+    WaitForReply();
+    Sleep(100); // Can omit this when using the writing robot but has minimal effect
+    // getch(); // Omit this once basic testing with emulator has taken place
+}
 
 

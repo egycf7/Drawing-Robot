@@ -39,5 +39,3 @@ void CharacterGCode();
 // SETTING THE ROBOT
 void SetRobot();
 
-// SENDDING COMMANDS
-void SendCommands (char *buffer );

@@ -2,6 +2,7 @@
 #include "CheckingWordAndGCodeCommands.h" 
 #include "rs232.h"
 #include "serial.h"
+#include "main.h"
 
 struct AsciiLine* LoadData(int *OutFontCount)
 {

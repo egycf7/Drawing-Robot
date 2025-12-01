@@ -2,6 +2,7 @@
 #include "LoadingDataStructs.h"
 #include "rs232.h"
 #include "serial.h"
+#include "main.h"
 
 float FontSize(void) //Make it so letters don't crash the system.
 {
@@ -141,13 +142,3 @@ void SetRobot(void)
     SetNewLine();
 }
 
-// Send the data to the robot - note in 'PC' mode you need to hit space twice
-// as the dummy 'WaitForReply' has a getch() within the function.
-void SendCommands (char *buffer )
-{
-    // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
-    PrintBuffer (&buffer[0]);
-    WaitForReply();
-    Sleep(100); // Can omit this when using the writing robot but has minimal effect
-    // getch(); // Omit this once basic testing with emulator has taken place
-}
