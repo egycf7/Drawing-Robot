@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
+#include "rs232.h"
+#include "serial.h"
+#include "CheckingWordAndGCodeCommands.h"
+#include "LoadingDataStructs.h"
+
+#define bdrate 115200               /* 115200 baud */
+
+int main()
+{
+
+    //char mode[]= {'8','N','1',0};
+    char buffer[100];
+
+    // If we cannot open the port then give up immediately
+    if ( CanRS232PortBeOpened() == -1 )
+    {
+        printf ("\nUnable to open the COM port (specified in serial.h) ");
+        exit (0);
+    }
+
+    // Time to wake up the robot
+    printf ("\nAbout to wake up the robot\n");
+
+    // We do this by sending a new-line
+    sprintf (buffer, "\n");
+     // printf ("Buffer to send: %s", buffer); // For diagnostic purposes only, normally comment out
+    PrintBuffer (&buffer[0]);
+    Sleep(100);
+
+    // This is a special case - we wait  until we see a dollar ($)
+    WaitForDollar();
+
+    FontArray = LoadData(&FontCount); // Calls the load font data function. This scans and stores all the strokes for each ascii character 
+    FontSize();
+    Font_Size_Fraction = ((float)Font_Size/18.0f);
+    SetRobot();
+    ReadAndSendNextWord();
+    printf("The whole sentence has been read and sent to the robot, the programme will now end");
+
+    // Before we exit the program we need to close the COM port
+    CloseRS232Port();
+    printf("Com port now closed\n");
+
+    return (0);
+}
+
+
+
