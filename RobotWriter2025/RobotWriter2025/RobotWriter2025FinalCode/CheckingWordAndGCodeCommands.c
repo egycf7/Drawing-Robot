@@ -34,7 +34,7 @@ void ReadAndSendNextWord(void)
     if (!Sentence)
     {
         printf("The file that contains your sentence couldn't be found\n\n");
-        exit(1);
+        exit(0);
     }
     int EndOfSentence = 0;
     printf("\nThe sentence file has been found and the robot is now ready to draw\n");
@@ -117,8 +117,8 @@ void CharacterGCode(void)
         Character_Length_X = X*Font_Size_Fraction;
         X = Pen_Coordinate_X + X*Font_Size_Fraction;
         Y = Pen_Coordinate_Y + Y*Font_Size_Fraction;
-        sprintf(MyBuffer, "G%d X%f Y%f", P, X, Y);
-        //printf("%s\n", MyBuffer);
+        sprintf(MyBuffer, "G%d X%f Y%f\n", P, X, Y);
+        //printf("%s", MyBuffer);
         SendCommands(MyBuffer);
         }
         Pen_Coordinate_X = Pen_Coordinate_X + Character_Length_X;

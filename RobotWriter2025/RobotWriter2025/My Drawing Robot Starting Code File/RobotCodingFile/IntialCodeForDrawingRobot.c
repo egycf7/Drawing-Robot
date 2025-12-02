@@ -49,6 +49,7 @@ struct AsciiLine
     int NumberOfLines;
     char *Lines[50];
 };
+
 struct AsciiLine *FontArray = NULL;
 
 struct AsciiLine* LoadData(int *OutFontCount)
@@ -191,13 +192,13 @@ void SetNewLine(void)
         Pen_Coordinate_X = 0;
         Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
         sprintf(MyBuffer, "G0 X0 Y");
-        sprintf(MyBuffer+strlen(MyBuffer), "%f", Pen_Coordinate_Y);
+        sprintf(MyBuffer+strlen(MyBuffer), "%f\n", Pen_Coordinate_Y);
         if(Pen_Coordinate_Y < -43)
         {
             printf("You have reached the last line on the page, therefore the robot won't draw anymore words");
             exit(0);
         }
-        printf("%s\n", MyBuffer);
+        printf("%s", MyBuffer);
         //SendCommands(MyBuffer);
 }
 
@@ -213,8 +214,8 @@ void CharacterGCode(void)
         Character_Length_X = X*Font_Size_Fraction;
         X = Pen_Coordinate_X + X*Font_Size_Fraction;
         Y = Pen_Coordinate_Y + Y*Font_Size_Fraction;
-        sprintf(MyBuffer, "G%d X%f Y%f", P, X, Y);
-        printf("%s\n", MyBuffer);
+        sprintf(MyBuffer, "G%d X%f Y%f\n", P, X, Y);
+        printf("%s", MyBuffer);
         //SendCommands(MyBuffer) 
         }
         Pen_Coordinate_X = Pen_Coordinate_X + Character_Length_X;

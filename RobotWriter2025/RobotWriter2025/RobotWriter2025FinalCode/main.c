@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
+#include <string.h>
 #include "rs232.h"
 #include "serial.h"
 #include "CheckingWordAndGCodeCommands.h"

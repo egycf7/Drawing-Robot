@@ -4,7 +4,6 @@
 #include <windows.h>
 #include <string.h>
 
-// Telling the main all the functions in the code:
 // Global Varibles
 int i, j;
 float Pen_Coordinate_X = 0;
@@ -13,18 +12,18 @@ char MyBuffer[256];
 float X, Y;
 int P;
 
-//FONT SIZE 
+// FONT SIZE 
 float FontSize(void);
 float Font_Size;
 float Font_Size_Fraction;
 
-//READ NEXT WORD
+// READ NEXT WORD
 void ReadAndSendNextWord();
 int CharactersInWord;
 char Character;
 int Word[256];
 
-//WORD LENGTH
+// WORD LENGTH
 float WordLength();
 float Character_Length_X;
 float Word_Length_X = 0;

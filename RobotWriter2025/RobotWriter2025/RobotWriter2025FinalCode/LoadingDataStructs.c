@@ -10,7 +10,7 @@ struct AsciiLine* LoadData(int *OutFontCount)
     if (!FP)
     {
         printf("The file could not be opened, please check to make sure that the is a file called SingleStrokeFont.txt\n");
-        exit(1);
+        exit(0);
     }
     while (1)
     {
