@@ -40,7 +40,7 @@ int main()
     FontSize();
     Font_Size_Fraction = ((float)Font_Size/18.0f);
     SetRobot();
-    ReadAndSendNextWord();
+    ReadNextWord();
     printf("The whole sentence has been read and sent to the robot, the programme will now end");
 
     // Before we exit the program we need to close the COM port

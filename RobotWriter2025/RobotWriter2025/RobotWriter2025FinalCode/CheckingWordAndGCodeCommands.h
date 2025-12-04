@@ -18,7 +18,7 @@ float Font_Size;
 float Font_Size_Fraction;
 
 // READ NEXT WORD
-void ReadAndSendNextWord();
+void ReadNextWord();
 int CharactersInWord;
 char Character;
 int Word[256];
@@ -37,4 +37,3 @@ void CharacterGCode();
 
 // SETTING THE ROBOT
 void SetRobot();
-

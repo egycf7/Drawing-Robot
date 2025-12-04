@@ -3,5 +3,8 @@
 #include <conio.h>
 #include <windows.h>
 
-//SENDDING COMMANDS
+// MAIN FUNCTION
+int main();
+
+// SENDDING COMMANDS
 void SendCommands (char *buffer );

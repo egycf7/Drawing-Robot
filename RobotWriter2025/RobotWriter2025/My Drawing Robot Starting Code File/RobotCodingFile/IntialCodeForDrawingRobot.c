@@ -18,7 +18,7 @@ float Font_Size;
 float Font_Size_Fraction;
 
 //READ NEXT WORD
-void ReadAndSendNextWord();
+void ReadNextWord();
 int CharactersInWord;
 char Character;
 int Word[256];
@@ -97,7 +97,7 @@ int main(void)
     FontSize();
     Font_Size_Fraction = ((float)Font_Size/18.0f);
     SetRobot();
-    ReadAndSendNextWord();
+    ReadNextWord();
     printf("The whole sentence has been read and sent to the robot, the programme will now end");
 }
 
@@ -125,7 +125,7 @@ float FontSize(void) //Make it so letters don't crash the system.
     }
 }
 
-void ReadAndSendNextWord(void)
+void ReadNextWord(void)
 { 
     FILE *Sentence = fopen("SampleLines.txt", "r");
     if (!Sentence)
@@ -214,6 +214,18 @@ void CharacterGCode(void)
         Character_Length_X = X*Font_Size_Fraction;
         X = Pen_Coordinate_X + X*Font_Size_Fraction;
         Y = Pen_Coordinate_Y + Y*Font_Size_Fraction;
+        if(P == 1)
+        {
+            sprintf(MyBuffer,"S1000\n");
+            printf(MyBuffer);
+            //SendCommands(MyBuffer);
+        }
+        if(P == 0)
+        {
+            sprintf(MyBuffer,"S0\n");
+            printf(MyBuffer);
+            //SendCommands(MyBuffer);
+        }
         sprintf(MyBuffer, "G%d X%f Y%f\n", P, X, Y);
         printf("%s", MyBuffer);
         //SendCommands(MyBuffer) 
