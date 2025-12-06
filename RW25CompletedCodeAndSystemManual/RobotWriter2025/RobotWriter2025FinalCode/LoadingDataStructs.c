@@ -22,7 +22,6 @@ struct AsciiLine* LoadData(int *OutFontCount)
         int ScannedValue;
         if (fscanf(FP, "%d", &ScannedValue) != 1) // First check is to make sure there is an integer being scanned and therefore if there is nothing to scan we know the end of the file has been reached
         {
-            printf("SingleStrokeFont.txt has been stored\n\n");
             break;
         }
         if (ScannedValue != 999)
