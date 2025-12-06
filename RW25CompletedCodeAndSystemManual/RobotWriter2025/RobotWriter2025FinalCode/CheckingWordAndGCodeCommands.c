@@ -107,8 +107,7 @@ float WordLength(void)
     for(i = 0; i < CharactersInWord; i++) // A Loop that sums each of the last X value for each character to work out the size of the word
     {
         struct AsciiLine *Line = &FontArray[(int)Word[i]];
-        char *LastLine = Line->Lines[Line->NumberOfLines];
-        sscanf(LastLine, "%f", &Character_Length_X);
+        sscanf(Line->Lines[Line->NumberOfLines], "%f", &Character_Length_X);
         Word_Length_X = Word_Length_X + Character_Length_X * Font_Size_Fraction;
     }
     return Word_Length_X;
@@ -120,12 +119,6 @@ void SetNewLine(void)
         Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
         sprintf(MyBuffer, "G0 X0 Y");
         sprintf(MyBuffer+strlen(MyBuffer), "%f", Pen_Coordinate_Y);
-        if(Pen_Coordinate_Y < -43)
-        {
-            printf("You have reached the last line on the page, therefore the robot won't draw anymore words");
-            exit(0);
-        }
-        //printf("%s\n", MyBuffer);
         SendCommands(MyBuffer);
 }
 
@@ -136,25 +129,21 @@ void CharacterGCode(void)
         struct AsciiLine *Line = &FontArray[(int)Word[i]];
         for(j = 1; j <= Line->NumberOfLines; j++)
         {
-        char *Stroke = Line->Lines[j];
-        sscanf(Stroke, "%f %f %d", &X, &Y, &P);
+        sscanf(Line->Lines[j], "%f %f %d", &X, &Y, &P);
         Character_Length_X = X*Font_Size_Fraction;
         X = Pen_Coordinate_X + X*Font_Size_Fraction;
         Y = Pen_Coordinate_Y + Y*Font_Size_Fraction;
         if(P == 1)
         {
             sprintf(MyBuffer,"S1000\n");
-            //printf(MyBuffer);
             SendCommands(MyBuffer);
         }
         if(P == 0)
         {
             sprintf(MyBuffer,"S0\n");
-            //printf(MyBuffer);
             SendCommands(MyBuffer);
         }
         sprintf(MyBuffer, "G%d X%f Y%f\n", P, X, Y);
-        //printf("%s", MyBuffer);
         SendCommands(MyBuffer);
         }
         Pen_Coordinate_X = Pen_Coordinate_X + Character_Length_X;
@@ -164,15 +153,12 @@ void CharacterGCode(void)
 void SetRobot(void)
 {
     sprintf (MyBuffer, "G1 X0 Y0 F1000\n");
-    //printf("%s\n", MyBuffer);
     SendCommands(MyBuffer);
 
     sprintf (MyBuffer, "M3\n");
-    //printf("%s\n", MyBuffer);
     SendCommands(MyBuffer);
 
     sprintf (MyBuffer, "S0\n");
-    //printf("%s\n", MyBuffer);
     SendCommands(MyBuffer);
 
     SetNewLine();
