@@ -4,6 +4,30 @@
 #include "serial.h"
 #include "main.h"
 
+// Global Varibles
+int i, j;
+float Pen_Coordinate_X = 0;
+float Pen_Coordinate_Y = 0;
+char MyBuffer[256];
+float X, Y;
+int P;
+
+// FONT SIZE 
+float Font_Size;
+float Font_Size_Fraction;
+
+// READ NEXT WORD
+int CharactersInWord;
+char Character;
+int Word[256];
+
+// WORD LENGTH
+float Character_Length_X;
+float Word_Length_X = 0;
+
+// SETTING NEW LINE
+int NewLine = 0;
+
 float FontSize(void) //Make it so letters don't crash the system.
 {
     printf("Please input any value between 4 and 10 to select a font size\n");
@@ -110,7 +134,7 @@ void CharacterGCode(void)
     for(i = 0; i < CharactersInWord; i++)
     {
         struct AsciiLine *Line = &FontArray[(int)Word[i]];
-        for(j = 0; j <= Line->NumberOfLines; j++)
+        for(j = 1; j <= Line->NumberOfLines; j++)
         {
         char *Stroke = Line->Lines[j];
         sscanf(Stroke, "%f %f %d", &X, &Y, &P);

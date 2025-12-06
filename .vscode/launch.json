@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Uni Work Folder/Year 3/Coding/Drawing-Robot/RobotWriter2025/RobotWriter2025/My Drawing Robot Starting Code File/RobotCodingFile",
-      "program": "c:/Uni Work Folder/Year 3/Coding/Drawing-Robot/RobotWriter2025/RobotWriter2025/My Drawing Robot Starting Code File/RobotCodingFile/build/Debug/outDebug",
+      "cwd": "c:/Uni Work Folder/Year 3/Coding/Drawing-Robot/RobotWriter2025/RobotWriter2025/RobotWriter2025FinalCode",
+      "program": "c:/Uni Work Folder/Year 3/Coding/Drawing-Robot/RobotWriter2025/RobotWriter2025/RobotWriter2025FinalCode/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -45,6 +45,17 @@
         }
       ],
       "preLaunchTask": "C/C++: gcc.exe build active file"
+    },
+    {
+      "name": "(Windows) Launch",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "enter program name, for example ${workspaceFolder}/a.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "console": "externalTerminal"
     }
   ]
 }

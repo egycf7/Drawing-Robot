@@ -96,6 +96,7 @@ int main(void)
     FontArray = LoadData(&FontCount); // Calls the load font data function. This scans and stores all the strokes for each ascii character 
     FontSize();
     Font_Size_Fraction = ((float)Font_Size/18.0f);
+    printf("\nThe sentence file has been found and the robot is now ready to draw\n");
     SetRobot();
     ReadNextWord();
     printf("The whole sentence has been read and sent to the robot, the programme will now end");
@@ -134,7 +135,6 @@ void ReadNextWord(void)
         exit(1);
     }
     int EndOfSentence = 0;
-    printf("\nThe sentence file has been found and the robot is now ready to draw\n");
     while(1)
     {   
         CharactersInWord = 0;
@@ -193,11 +193,6 @@ void SetNewLine(void)
         Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
         sprintf(MyBuffer, "G0 X0 Y");
         sprintf(MyBuffer+strlen(MyBuffer), "%f\n", Pen_Coordinate_Y);
-        if(Pen_Coordinate_Y < -43)
-        {
-            printf("You have reached the last line on the page, therefore the robot won't draw anymore words");
-            exit(0);
-        }
         printf("%s", MyBuffer);
         //SendCommands(MyBuffer);
 }
@@ -207,7 +202,7 @@ void CharacterGCode(void)
     for(i = 0; i < CharactersInWord; i++)
     {
         struct AsciiLine *Line = &FontArray[(int)Word[i]];
-        for(j = 0; j <= Line->NumberOfLines; j++)
+        for(j = 1; j <= Line->NumberOfLines; j++)
         {
         char *Stroke = Line->Lines[j];
         sscanf(Stroke, "%f %f %d", &X, &Y, &P);

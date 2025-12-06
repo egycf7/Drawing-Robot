@@ -1,3 +1,6 @@
+#ifndef LOADINGDATASTRUCTS_H_INCLUDED
+#define LOADINGDATASTRUCTS_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +8,8 @@
 #include <windows.h>
 
 //LOAD DATA
-int FontCount = 0;
+
+extern int FontCount;
 
 struct AsciiLine
 {
@@ -15,4 +19,6 @@ struct AsciiLine
 };
 
 struct AsciiLine* LoadData(int *OutFontCount);
-struct AsciiLine *FontArray = NULL;
+extern struct AsciiLine *FontArray;
+
+#endif

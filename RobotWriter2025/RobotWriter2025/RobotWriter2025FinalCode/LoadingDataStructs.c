@@ -4,6 +4,11 @@
 #include "serial.h"
 #include "main.h"
 
+#ifdef LOADINGDATASTRUCTS_H_INCLUDED
+
+int FontCount = 0;
+struct AsciiLine *FontArray = NULL;
+
 struct AsciiLine* LoadData(int *OutFontCount)
 {
     FILE *FP = fopen("SingleStrokeFont.txt", "r");
@@ -42,3 +47,5 @@ struct AsciiLine* LoadData(int *OutFontCount)
     *OutFontCount = FontCount;
     return FontArray;
 }
+
+#endif

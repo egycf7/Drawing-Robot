@@ -4,36 +4,41 @@
 #include <windows.h>
 #include <string.h>
 
+#ifndef CHECKINGWORDANDGCODECOMMANDS_H_INCLUDED
+#define CHECKINGWORDANDGCODECOMMANDS_H_INCLUDED
+
 // Global Varibles
-int i, j;
-float Pen_Coordinate_X = 0;
-float Pen_Coordinate_Y = 0;
-char MyBuffer[256];
-float X, Y;
-int P;
+extern int i, j;
+extern float Pen_Coordinate_X;
+extern float Pen_Coordinate_Y;
+extern char MyBuffer[256];
+extern float X, Y;
+extern int P;
 
 // FONT SIZE 
 float FontSize(void);
-float Font_Size;
-float Font_Size_Fraction;
+extern float Font_Size;
+extern float Font_Size_Fraction;
 
 // READ NEXT WORD
 void ReadNextWord();
-int CharactersInWord;
-char Character;
-int Word[256];
+extern int CharactersInWord;
+extern char Character;
+extern int Word[256];
 
 // WORD LENGTH
 float WordLength();
-float Character_Length_X;
-float Word_Length_X = 0;
+extern float Character_Length_X;
+extern float Word_Length_X;
 
 // SETTING NEW LINE
 void SetNewLine();
-int NewLine = 0;
+extern int NewLine;
 
 // CHARACTER GCODE
 void CharacterGCode();
 
 // SETTING THE ROBOT
 void SetRobot();
+
+#endif
