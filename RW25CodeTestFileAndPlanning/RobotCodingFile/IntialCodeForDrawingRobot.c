@@ -3,7 +3,7 @@
 #include <string.h>
 #include <Windows.h>
 
-// This is my finished code for the robot, I have moved it into the RobotWriter2025FinalCode File and have put all the functions into separate folders
+// This is my intial code for the robot, I have moved it into the RobotWriter2025FinalCode File, put all the functions into separate folders and have improved this code in that file
 
 // Telling the main all the functions in the code:
 // Global Varibles

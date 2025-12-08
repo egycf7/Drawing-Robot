@@ -22,18 +22,12 @@ extern float Font_Size_Fraction;
 
 // READ NEXT WORD
 void ReadNextWord();
-extern int CharactersInWord;
-extern char Character;
-extern int Word[256];
 
 // WORD LENGTH
 float WordLength();
-extern float Character_Length_X;
-extern float Word_Length_X;
 
 // SETTING NEW LINE
 void SetNewLine();
-extern int NewLine;
 
 // CHARACTER GCODE
 void CharacterGCode();

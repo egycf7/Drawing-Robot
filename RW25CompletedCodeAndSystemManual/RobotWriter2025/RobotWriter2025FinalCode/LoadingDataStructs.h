@@ -8,7 +8,6 @@
 #include <windows.h>
 
 //LOAD DATA
-
 extern int FontCount;
 
 struct AsciiLine
