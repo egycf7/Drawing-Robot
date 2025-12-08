@@ -6,7 +6,11 @@
 #ifndef main_H_INCLUDED
 #define main_H_INCLUDED
 
-// SENDDING COMMANDS
+// MAIN
+
+int main();
+
+// SENDING COMMANDS
 void SendCommands (char *buffer );
 
 #endif

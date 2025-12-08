@@ -59,6 +59,7 @@
   "files.associations": {
     "loadingdatastructs.h": "c",
     "string.h": "c",
-    "checkingwordandgcodecommands.h": "c"
+    "checkingwordandgcodecommands.h": "c",
+    "settingup.h": "c"
   }
 }
