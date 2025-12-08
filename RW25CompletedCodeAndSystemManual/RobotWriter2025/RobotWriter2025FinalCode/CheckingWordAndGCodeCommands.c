@@ -110,16 +110,21 @@ float WordLength(void)
         sscanf(Line->Lines[Line->NumberOfLines], "%f", &Character_Length_X);
         Word_Length_X = Word_Length_X + Character_Length_X * Font_Size_Fraction;
     }
+    if(Word_Length_X > 100)
+    {
+        printf("The next word that is about to be drawn in your sentence is to long to fit on the page");
+        exit(0);
+    }
     return Word_Length_X;
 }
 
 void SetNewLine(void)
 {   
-        Pen_Coordinate_X = 0;
-        Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
-        sprintf(MyBuffer, "G0 X0 Y");
-        sprintf(MyBuffer+strlen(MyBuffer), "%f", Pen_Coordinate_Y);
-        SendCommands(MyBuffer);
+    Pen_Coordinate_X = 0;
+    Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
+    sprintf(MyBuffer, "G0 X0 Y");
+    sprintf(MyBuffer+strlen(MyBuffer), "%f", Pen_Coordinate_Y);
+    SendCommands(MyBuffer);
 }
 
 void CharacterGCode(void)
