@@ -1,5 +1,5 @@
-#ifndef LOADINGDATASTRUCTS_H_INCLUDED
-#define LOADINGDATASTRUCTS_H_INCLUDED
+#ifndef SETTINGUP_H_INCLUDED
+#define SETTINGUP_H_INCLUDED
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,5 +19,13 @@ struct AsciiLine
 
 struct AsciiLine* LoadData(int *OutFontCount);
 extern struct AsciiLine *FontArray;
+
+// FONT SIZE 
+float FontSize(void);
+extern float Font_Size;
+extern float Font_Size_Fraction;
+
+// SETTING THE ROBOT
+void SetRobot();
 
 #endif

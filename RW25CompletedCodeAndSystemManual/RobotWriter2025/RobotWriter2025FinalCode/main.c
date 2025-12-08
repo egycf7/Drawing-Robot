@@ -6,7 +6,7 @@
 #include "rs232.h"
 #include "serial.h"
 #include "CheckingWordAndGCodeCommands.h"
-#include "LoadingDataStructs.h"
+#include "SettingUp.h"
 #include "main.h"
 
 #define bdrate 115200               /* 115200 baud */

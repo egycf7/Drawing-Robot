@@ -14,11 +14,6 @@ extern float Pen_Coordinate_Y;
 extern char MyBuffer[256];
 extern float X, Y;
 extern int P;
-extern float Font_Size;
-extern float Font_Size_Fraction;
-
-// FONT SIZE 
-float FontSize(void);
 
 // READ NEXT WORD
 void ReadNextWord();
@@ -31,8 +26,5 @@ void SetNewLine();
 
 // CHARACTER GCODE
 void CharacterGCode();
-
-// SETTING THE ROBOT
-void SetRobot();
 
 #endif
