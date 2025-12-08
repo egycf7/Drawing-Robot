@@ -28,17 +28,17 @@ float Word_Length_X = 0;
 // SETTING NEW LINE
 int NewLine = 0;
 
-float FontSize(void) //Make it so letters don't crash the system.
+float FontSize(void)
 {
     printf("Please input any value between 4 and 10 to select a font size\n");
     scanf("%f", &Font_Size);
     if (Font_Size >= 4 && Font_Size <=10) // Checks to see if the number scanned is an integer between 4 and 10
     {
-        getchar();
         printf("\nYou have selected the font size: %f\n\n", Font_Size);
-        return Font_Size; // Returns the users selected font size to the main
+        getchar();
+        return Font_Size;
     }
-    if (!Font_Size)
+    if (!Font_Size) // Font_Size will be NULL if a number isn't input by te user
     {
         printf("\nPlease make sure you input a number between 4 and 10\n");
         getchar();
@@ -65,20 +65,20 @@ void ReadNextWord(void)
     while(1)
     {   
         CharactersInWord = 0;
-        while(1) // Either a space or \n denotes the end of a word and therefore the while loop break when one of these is scanned to allow it to be drawn before moving onto the next word
+        while(1) 
         {
-            if (fscanf(Sentence, "%c", &Character) != 1)
+            if (fscanf(Sentence, "%c", &Character) != 1) // No character to scan concludes the sentence has all been scanned
             {
                 EndOfSentence = 1; 
                 break;
             }
-            if (Character == '\n')
+            if (Character == '\n') // \n concludes the user has moved to the next line and this is the end of the word  
             {
                 NewLine = 1;
                 break;
             }
             Word[CharactersInWord++] = Character;
-            if (Character == ' ') 
+            if (Character == ' ') // Space concludes this is the end of the word being scanned and therefore it can now be processed
             {
                 break;
             }
@@ -104,7 +104,7 @@ void ReadNextWord(void)
 float WordLength(void)
 {
     Word_Length_X = 0;
-    for(i = 0; i < CharactersInWord; i++) // A Loop that sums each of the last X value for each character to work out the size of the word
+    for(i = 0; i < CharactersInWord; i++) // This loop finds the ending stroke's X value in each of the characters and sums them to find the word length
     {
         struct AsciiLine *Line = &FontArray[(int)Word[i]];
         sscanf(Line->Lines[Line->NumberOfLines], "%f", &Character_Length_X);
@@ -122,8 +122,7 @@ void SetNewLine(void)
 {   
     Pen_Coordinate_X = 0;
     Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
-    sprintf(MyBuffer, "G0 X0 Y");
-    sprintf(MyBuffer+strlen(MyBuffer), "%f", Pen_Coordinate_Y);
+    sprintf(MyBuffer, "G0 X0 Y%f\n", Pen_Coordinate_Y);
     SendCommands(MyBuffer);
 }
 
@@ -131,7 +130,7 @@ void CharacterGCode(void)
 {
     for(i = 0; i < CharactersInWord; i++)
     {
-        struct AsciiLine *Line = &FontArray[(int)Word[i]];
+        struct AsciiLine *Line = &FontArray[(int)Word[i]]; 
         for(j = 1; j <= Line->NumberOfLines; j++)
         {
         sscanf(Line->Lines[j], "%f %f %d", &X, &Y, &P);
@@ -151,11 +150,11 @@ void CharacterGCode(void)
         sprintf(MyBuffer, "G%d X%f Y%f\n", P, X, Y);
         SendCommands(MyBuffer);
         }
-        Pen_Coordinate_X = Pen_Coordinate_X + Character_Length_X;
+        Pen_Coordinate_X = Pen_Coordinate_X + Character_Length_X; // Edits the pen's X location after each character has been drawn and therefore the characters get drawn next to each other
     }
 }
 
-void SetRobot(void)
+void SetRobot(void) // Sends the specific commands to the robot that get it ready in the location for the first letter to be drawnn
 {
     sprintf (MyBuffer, "G1 X0 Y0 F1000\n");
     SendCommands(MyBuffer);
