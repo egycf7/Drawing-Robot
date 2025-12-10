@@ -36,7 +36,12 @@ int main()
     // This is a special case - we wait  until we see a dollar ($)
     WaitForDollar();
 
-    FontArray = LoadData(&FontCount); // Calls the load font data function. This scans and stores all the strokes for each ascii character 
+    FontArray = LoadData(&FontCount);
+    if(FontCount != 128) 
+    {
+        printf("SingleStrokeFont doesn't contain all the 128 ascii characters");
+        exit(0);
+    }
     FontSize();
     Font_Size_Fraction = ((float)Font_Size/18.0f);
     SetRobot();
