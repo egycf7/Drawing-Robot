@@ -33,7 +33,7 @@ struct AsciiLine* LoadData(int *OutFontCount)
         FontArray = realloc(FontArray, (size_t)(FontCount + 1) * sizeof(struct AsciiLine)); // Reallocated the size of the array to be 1 larger than it was to allow for the storage of the next ascii character's stroke lines 
         struct AsciiLine *Line = &FontArray[FontCount];
         fscanf(FP, "%d", &Line->AsciiValue); // Scans the next integer after 999 and sets this as the ascii value for the character
-        fscanf(FP, "%d", &Line->NumberOfLines); // Scans the next integer after AsciiValue and set it to define the number of lines that the character has in it
+        fscanf(FP, "%d", &Line->NumberOfLines); // Scans the next integer and sets it as the number of stroke lines the character has
         fgetc(FP);
         for (i = 0; i <= Line->NumberOfLines; i++) // A loop that reads through the lines for the specific ascii character (Number of loops = NumberOfLines)
         {

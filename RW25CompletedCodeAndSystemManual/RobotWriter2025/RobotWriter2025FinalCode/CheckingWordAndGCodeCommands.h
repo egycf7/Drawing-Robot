@@ -19,7 +19,7 @@ extern int P;
 void ReadNextWord();
 
 // WORD LENGTH
-float WordLength();
+void WordLength();
 
 // SETTING NEW LINE
 void SetNewLine();

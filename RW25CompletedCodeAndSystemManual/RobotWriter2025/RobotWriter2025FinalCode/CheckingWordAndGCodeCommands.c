@@ -73,7 +73,7 @@ void ReadNextWord(void)
     }
 }
 
-float WordLength(void)
+void WordLength(void)
 {
     Word_Length_X = 0;
     for(i = 0; i < CharactersInWord; i++) // This loop finds the ending stroke's X value in each of the characters and sums them to find the word length
@@ -87,10 +87,9 @@ float WordLength(void)
         printf("The next word that is about to be drawn in your sentence is to long to fit on the page");
         exit(0);
     }
-    return Word_Length_X;
 }
 
-void SetNewLine(void)
+void SetNewLine(void) // Moves the robot to the start of a new line before writing the next word
 {   
     Pen_Coordinate_X = 0;
     Pen_Coordinate_Y = Pen_Coordinate_Y - 2*Font_Size;
